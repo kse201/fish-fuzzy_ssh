@@ -12,9 +12,9 @@ function peco_ssh
         }
       }
     }
-  ' ~/.ssh/config | sort | peco --prompt "SSH>" $peco_flags | read -l hostname
+  ' ~/.ssh/config | sort | peco --prompt "SSH>" $peco_flags | read -l node
 
-  if test -n "$hostname"
-    commandline -r "ssh $hostname"
+  if test -n "$node"
+    commandline -r "ssh $node"
   end
 end
