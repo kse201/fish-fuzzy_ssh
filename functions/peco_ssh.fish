@@ -12,7 +12,7 @@ function peco_ssh
         }
       }
     }
-  ' ~/.ssh/config | sort | peco --prompt "SSH>" $peco_flags | read -l node
+  ' ~/.ssh/config ~/.ssh/ssh_config.d/*.conf | sort | peco --prompt "SSH>" $peco_flags | read -l node
 
   if test -n "$node"
     commandline -r "ssh $node"
