@@ -1,9 +1,5 @@
 function fuzzy_ssh
   set -l query (commandline)
-  if test -n $query
-    set query "$query"
-  end
-
   awk '
     tolower($1)=="host" {
       for(i=2;i<=NF; i++) {
