@@ -1,7 +1,7 @@
-function peco_ssh
+function fuzzy_ssh
   set -l query (commandline)
   if test -n $query
-    set peco_flags --query "$query"
+    set query --query "$query"
   end
 
   awk '
@@ -12,7 +12,7 @@ function peco_ssh
         }
       }
     }
-  ' ~/.ssh/config ~/.ssh/ssh_config.d/*.conf | sort | peco --prompt "SSH>" $peco_flags | read -l node
+  ' ~/.ssh/config ~/.ssh/ssh_config.d/*.conf | sed "s/\r//" | sort | fzf --prompt "SSH> " $query | read -l node
 
   if test -n "$node"
     commandline -r "ssh $node"
