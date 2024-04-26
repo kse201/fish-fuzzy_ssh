@@ -1,7 +1,7 @@
 function fuzzy_ssh
   set -l query (commandline)
   if test -n $query
-    set query --query "$query"
+    set query "$query"
   end
 
   awk '
@@ -12,7 +12,7 @@ function fuzzy_ssh
         }
       }
     }
-  ' ~/.ssh/config ~/.ssh/ssh_config.d/*.conf | sed "s/\r//" | sort | fzf --prompt "SSH> " $query | read -l node
+  ' ~/.ssh/config ~/.ssh/ssh_config.d/*.conf | sed "s/\r//" | sort | fzf --prompt "SSH> " --query $query | read -l node
 
   if test -n "$node"
     commandline -r "ssh $node"
